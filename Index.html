@@ -1,0 +1,221 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAME VAULT</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0b1020;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  padding: 20px;
+  background: #111a2e;
+  border-bottom: 1px solid #29334b;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #67e8f9;
+}
+
+header p {
+  color: #aab5ca;
+  font-size: 14px;
+}
+
+main {
+  max-width: 850px;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+.intro {
+  color: #aab5ca;
+  line-height: 1.6;
+}
+
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 16px 0;
+  border-radius: 10px;
+  border: 1px solid #39465f;
+  background: #172137;
+  color: white;
+  font-size: 16px;
+}
+
+.games {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.card {
+  background: #151f34;
+  padding: 14px;
+  border: 1px solid #293750;
+  border-radius: 14px;
+}
+
+.cover {
+  background: #253754;
+  border-radius: 10px;
+  padding: 24px 5px;
+  text-align: center;
+  font-size: 45px;
+}
+
+.card h2 {
+  font-size: 18px;
+}
+
+.details {
+  font-size: 13px;
+  color: #aab5ca;
+}
+
+.download {
+  display: block;
+  text-align: center;
+  background: #0891b2;
+  color: white;
+  padding: 12px 5px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+footer {
+  text-align: center;
+  color: #aab5ca;
+  padding: 28px 12px;
+  font-size: 13px;
+}
+
+@media (max-width: 360px) {
+  .games {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🎮 GAME VAULT</div>
+  <p>Discover games. Download simply.</p>
+</header>
+
+<main>
+  <h1>Find your next game.</h1>
+  <p class="intro">
+    Explore Android games in one simple place.
+    No annoying pop-ups.
+  </p>
+
+  <input
+    type="search"
+    id="search"
+    placeholder="Search games..."
+    aria-label="Search games"
+  >
+
+  <div class="games" id="games">
+
+    <article class="card" data-name="Game One">
+      <div class="cover">🎮</div>
+      <h2>Game One</h2>
+      <p class="details">Android · 350 MB</p>
+      <a class="download" href="#"
+         onclick="return demoNotice(event)">
+        DOWNLOAD
+      </a>
+    </article>
+
+    <article class="card" data-name="Game Two">
+      <div class="cover">⚔️</div>
+      <h2>Game Two</h2>
+      <p class="details">Android · 120 MB</p>
+      <a class="download" href="#"
+         onclick="return demoNotice(event)">
+        DOWNLOAD
+      </a>
+    </article>
+
+    <article class="card" data-name="Game Three">
+      <div class="cover">🏎️</div>
+      <h2>Game Three</h2>
+      <p class="details">Android · 500 MB</p>
+      <a class="download" href="#"
+         onclick="return demoNotice(event)">
+        DOWNLOAD
+      </a>
+    </article>
+
+    <article class="card" data-name="Game Four">
+      <div class="cover">🧩</div>
+      <h2>Game Four</h2>
+      <p class="details">Android · 80 MB</p>
+      <a class="download" href="#"
+         onclick="return demoNotice(event)">
+        DOWNLOAD
+      </a>
+    </article>
+
+  </div>
+
+  <p id="empty" hidden>No games found.</p>
+</main>
+
+<footer>
+  GAME VAULT · Simple gaming, no fuss.
+</footer>
+
+<script>
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const empty = document.getElementById("empty");
+
+search.addEventListener("input", function () {
+  let visible = 0;
+
+  cards.forEach(function (card) {
+    const name = card.dataset.name.toLowerCase();
+    const match = name.includes(search.value.toLowerCase());
+
+    card.hidden = !match;
+    if (match) visible++;
+  });
+
+  empty.hidden = visible !== 0;
+});
+
+function demoNotice(event) {
+  event.preventDefault();
+  alert("Demo only! A real game download link has not been added yet.");
+  return false;
+}
+</script>
+
+</body>
+</html>
+
